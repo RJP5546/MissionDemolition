@@ -5,13 +5,20 @@ using UnityEngine;
 public class Slingshot : MonoBehaviour
 {
     [Header("Inscribed")]
+    public GameObject projectilePrefab;
+
+    [Header("Dynamic")]
     public GameObject launchPoint;
+    public GameObject projectile;
+    public bool aimingMode;
 
     void Awake()
     {
-        //Transform launchPointTrans = transform.Find("LaunchPoint");
-        //launchPoint = launchPointTrans.gameObject;
+        launchPoint = transform.Find("LaunchPoint").gameObject;
         launchPoint.SetActive(false);
+        aimingMode = false;
+
+
     }
     
     // Start is called before the first frame update
@@ -36,5 +43,13 @@ public class Slingshot : MonoBehaviour
     {
         //print("Slingshot::OnMouseExit()");
         launchPoint.SetActive(false);
+    }
+
+    void OnMouseDown()
+    {
+        aimingMode = true;
+        projectile = Instantiate<GameObject>(projectilePrefab);
+        projectile.transform.position = launchPoint.transform.position;
+        projectile.GetComponent<Rigidbody>().isKinematic = true;
     }
 }
