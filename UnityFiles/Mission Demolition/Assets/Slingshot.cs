@@ -4,6 +4,16 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+    [Header("Inscribed")]
+    public GameObject launchPoint;
+
+    void Awake()
+    {
+        //Transform launchPointTrans = transform.Find("LaunchPoint");
+        //launchPoint = launchPointTrans.gameObject;
+        launchPoint.SetActive(false);
+    }
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +28,13 @@ public class Slingshot : MonoBehaviour
 
     void OnMouseEnter()
     {
-        print("Slingshot::OnMouseEnter()");
+        //print("Slingshot::OnMouseEnter()");
+        launchPoint.SetActive(true);
     }
 
     void OnMouseExit()
     {
-        print("Slingshot::OnMouseExit()");
+        //print("Slingshot::OnMouseExit()");
+        launchPoint.SetActive(false);
     }
 }
