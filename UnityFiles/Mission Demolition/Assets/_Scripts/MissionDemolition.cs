@@ -60,6 +60,7 @@ public class MissionDemolition : MonoBehaviour
         UpdateGUI();
 
         mode = GameMode.playing;
+        FollowCam.SWITCH_VIEW(FollowCam.eView.both);
     }
 
     void UpdateGUI()
@@ -79,7 +80,8 @@ public class MissionDemolition : MonoBehaviour
         {
             //Channge mode to stop checking for level end
             mode = GameMode.levelEnd;
-
+            //Zoom out to show both
+            FollowCam.SWITCH_VIEW(FollowCam.eView.both);
             //Start the next level in 2 seconds
             Invoke("NextLevel", 2f);
         }
@@ -103,7 +105,7 @@ public class MissionDemolition : MonoBehaviour
     }
 
     //Static method that allows code anywhere to refrence S.castle
-    static public GameObject GET_Castle()
+    static public GameObject GET_CASTLE()
     {
         return s.castle;
     }
